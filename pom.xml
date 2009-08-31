@@ -16,7 +16,17 @@
             <id>java.net</id>
             <url>http://download.java.net/maven/2</url>
         </repository>
+        <repository>
+            <id>cukes</id>
+            <url>http://cukes.info/maven</url>
+        </repository>
     </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>cukes</id>
+            <url>http://cukes.info/maven</url>
+        </pluginRepository>
+    </pluginRepositories>
 
     <dependencies>
         <dependency>
@@ -55,6 +65,12 @@
             <version>1.0.3.1</version>
         </dependency>
         <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.5</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.7</version>
@@ -64,6 +80,24 @@
             <groupId>org.mockito</groupId>
             <artifactId>mockito-all</artifactId>
             <version>1.7</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>cuke4duke</groupId>
+            <artifactId>cuke4duke</artifactId>
+            <version>0.1.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.picocontainer</groupId>
+            <artifactId>picocontainer</artifactId>
+            <version>2.8.3</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>2.5.6</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -135,6 +169,37 @@
                                 <srcFile>${project.build.sourceDirectory}/../sql/base_schema.sql</srcFile>
                             </srcFiles>
                         </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>cuke4duke</groupId>
+                <artifactId>cuke4duke-maven-plugin</artifactId>
+                <version>0.1.1</version>
+                <configuration>
+                    <features>src/test/features</features>
+                    <jvmArgs>
+                        <jvmArg>-Dcuke4duke.objectFactory=cuke4duke.internal.java.PicoFactory</jvmArg>
+                    </jvmArgs>
+                    <args>
+                        <arg>--color</arg>
+                        <arg>--strict</arg>
+                        <arg>--no-source</arg>
+                        <arg>--no-multiline</arg>
+                        <arg>--require</arg>
+                        <arg>${basedir}/src/test/java/net/cijug/demo/soccer/cukes/steps</arg>
+                    </args>
+                    <gems>
+                        <gem>cucumber:0.3.97</gem>
+                    </gems>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>run-features</id>
+                        <phase>integration-test</phase>
+                        <goals>
+                            <goal>features</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>
