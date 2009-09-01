@@ -6,7 +6,7 @@ import cuke4duke.spring.StepDefinitions;
 import net.cijug.demo.soccer.cukes.World;
 import org.custommonkey.xmlunit.XMLAssert;
 import org.custommonkey.xmlunit.XMLUnit;
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @StepDefinitions
