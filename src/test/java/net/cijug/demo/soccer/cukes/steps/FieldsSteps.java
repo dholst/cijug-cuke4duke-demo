@@ -10,6 +10,7 @@ public class FieldsSteps {
         this.world = world;
     }
 
+    /*
     @Given("^the following fields are in the database$")
     public void theFollowingFieldsAreInTheDatabase(Table table) {
         world.clearTable("fields");
@@ -20,4 +21,5 @@ public class FieldsSteps {
     public void anApiUserRequestsAFieldList(String format) throws Exception {
         world.get("fields", format);
     }
+    */
 }

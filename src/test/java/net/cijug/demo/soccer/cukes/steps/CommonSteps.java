@@ -15,6 +15,7 @@ public class CommonSteps {
         this.world = world;
     }
 
+    /*
     @After("")
     public void tearDown(Object scenario) {
         world.destroy();
@@ -36,4 +37,5 @@ public class CommonSteps {
     public void theReturnedJsonShouldBe(String json) throws Exception {
         assertEquals(json, world.getResponseContent());
     }
+    */
 }

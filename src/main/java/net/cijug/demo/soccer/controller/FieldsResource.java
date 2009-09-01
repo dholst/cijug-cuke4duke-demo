@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 import com.sun.jersey.spi.inject.Inject;
 
-@Path("fields")
+@Path("fieldz")
 public class FieldsResource {
     @Inject
     FieldDao dao;
