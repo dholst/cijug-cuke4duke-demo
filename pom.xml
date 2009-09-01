@@ -82,7 +82,7 @@
         <dependency>
             <groupId>cuke4duke</groupId>
             <artifactId>cuke4duke</artifactId>
-            <version>0.1.1</version>
+            <version>0.1.2</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -190,7 +190,7 @@
             <plugin>
                 <groupId>cuke4duke</groupId>
                 <artifactId>cuke4duke-maven-plugin</artifactId>
-                <version>0.1.1</version>
+                <version>0.1.2</version>
                 <configuration>
                     <features>src/test/features</features>
                     <jvmArgs>
@@ -205,7 +205,7 @@
                         <arg>${basedir}/src/test/java/net/cijug/demo/soccer/cukes/steps</arg>
                     </args>
                     <gems>
-                        <gem>cucumber:0.3.97</gem>
+                        <gem>cucumber:0.3.98</gem>
                     </gems>
                 </configuration>
                 <executions>
