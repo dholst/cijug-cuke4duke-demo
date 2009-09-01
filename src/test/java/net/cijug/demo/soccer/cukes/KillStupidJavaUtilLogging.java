@@ -1,4 +1,4 @@
-package net.cijug.demo.soccer.cukes.steps;
+package net.cijug.demo.soccer.cukes;
 
 import org.slf4j.bridge.SLF4JBridgeHandler;
 

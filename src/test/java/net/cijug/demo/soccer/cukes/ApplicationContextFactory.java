@@ -1,4 +1,4 @@
-package net.cijug.demo.soccer.cukes.steps;
+package net.cijug.demo.soccer.cukes;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.mock.web.MockServletContext;

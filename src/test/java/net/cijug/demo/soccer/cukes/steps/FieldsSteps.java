@@ -1,6 +1,7 @@
 package net.cijug.demo.soccer.cukes.steps;
 
 import cuke4duke.*;
+import net.cijug.demo.soccer.cukes.World;
 
 public class FieldsSteps {
     private World world;

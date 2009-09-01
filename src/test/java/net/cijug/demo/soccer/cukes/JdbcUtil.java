@@ -1,4 +1,4 @@
-package net.cijug.demo.soccer.cukes.steps;
+package net.cijug.demo.soccer.cukes;
 
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.core.JdbcTemplate;

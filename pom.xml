@@ -200,8 +200,9 @@
                         <arg>--color</arg>
                         <arg>--strict</arg>
                         <arg>--no-source</arg>
-                        <arg>--no-multiline</arg>
+                        <!--<arg>- -no-multiline</arg>-->
                         <arg>--require</arg>
+                        <arg>${basedir}/src/test/java/net/cijug/demo/soccer/cukes</arg>
                         <arg>${basedir}/src/test/java/net/cijug/demo/soccer/cukes/steps</arg>
                     </args>
                     <gems>

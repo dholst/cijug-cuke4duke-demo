@@ -5,9 +5,8 @@ import cuke4duke.Then;
 import org.custommonkey.xmlunit.XMLAssert;
 import org.custommonkey.xmlunit.XMLUnit;
 import static org.junit.Assert.assertEquals;
-import org.xml.sax.SAXException;
 
-import java.io.IOException;
+import net.cijug.demo.soccer.cukes.World;
 
 public class CommonSteps {
     private World world;

@@ -1,4 +1,4 @@
-package net.cijug.demo.soccer.cukes.steps;
+package net.cijug.demo.soccer.cukes;
 
 import com.sun.jersey.spi.spring.container.servlet.SpringServlet;
 import org.springframework.mock.web.*;
