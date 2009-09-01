@@ -5,5 +5,5 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class Field {
     public long id;
-    public String name;    
+    public String name;
 }

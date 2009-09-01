@@ -1,13 +1,13 @@
 package net.cijug.demo.soccer.controller;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.junit.Test;
-import org.junit.Before;
-import net.cijug.demo.soccer.model.FieldDao;
 import net.cijug.demo.soccer.model.Field;
+import net.cijug.demo.soccer.model.FieldDao;
+import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.Mock;
+import static org.mockito.Mockito.*;
+import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +18,7 @@ public class FieldsResourceTest {
     private FieldsResource resource;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         MockitoAnnotations.initMocks(this);
         resource = new FieldsResource();
         resource.dao = dao;

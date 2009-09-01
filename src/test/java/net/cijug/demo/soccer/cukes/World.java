@@ -16,6 +16,10 @@ public class World {
     private MockHttpServletRequest request = new MockHttpServletRequest();
     private MockHttpServletResponse response = new MockHttpServletResponse();
 
+    public World() {
+        response.setStatus(0);
+    }
+
     public void destroy() {
         jdbc.destroy();
     }

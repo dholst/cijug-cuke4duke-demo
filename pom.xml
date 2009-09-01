@@ -115,6 +115,12 @@
             <version>1.2</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-all</artifactId>
+            <version>1.6.4</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -193,17 +199,10 @@
                 <version>0.1.2</version>
                 <configuration>
                     <features>src/test/features</features>
-                    <jvmArgs>
-                        <jvmArg>-Dcuke4duke.objectFactory=cuke4duke.internal.java.PicoFactory</jvmArg>
-                    </jvmArgs>
                     <args>
                         <arg>--color</arg>
                         <arg>--strict</arg>
                         <arg>--no-source</arg>
-                        <!--<arg>- -no-multiline</arg>-->
-                        <arg>--require</arg>
-                        <arg>${basedir}/src/test/java/net/cijug/demo/soccer/cukes</arg>
-                        <arg>${basedir}/src/test/java/net/cijug/demo/soccer/cukes/steps</arg>
                     </args>
                     <gems>
                         <gem>cucumber:0.3.98</gem>
@@ -215,6 +214,18 @@
                         <phase>integration-test</phase>
                         <goals>
                             <goal>features</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.groovy.maven</groupId>
+                <artifactId>gmaven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>testCompile</goal>
                         </goals>
                     </execution>
                 </executions>
