@@ -194,13 +194,13 @@
                 <configuration>
                     <features>src/test/features</features>
                     <jvmArgs>
-                        <jvmArg>-Dcuke4duke.objectFactory=cuke4duke.internal.java.PicoFactory</jvmArg>
+                        <jvmArg>-Dcuke4duke.objectFactory=cuke4duke.internal.java.SpringFactory</jvmArg>
                     </jvmArgs>
                     <args>
                         <arg>--color</arg>
                         <arg>--strict</arg>
                         <arg>--no-source</arg>
-                        <arg>--no-multiline</arg>
+                        <!--<arg>- -no-multiline</arg>-->
                         <arg>--require</arg>
                         <arg>${basedir}/src/test/java/net/cijug/demo/soccer/cukes/steps</arg>
                     </args>

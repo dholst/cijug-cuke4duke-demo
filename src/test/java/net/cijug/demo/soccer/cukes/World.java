@@ -1,13 +1,15 @@
-package net.cijug.demo.soccer.cukes.steps;
+package net.cijug.demo.soccer.cukes;
 
 import com.sun.jersey.spi.spring.container.servlet.SpringServlet;
 import org.springframework.mock.web.*;
+import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
 
 import javax.servlet.Filter;
 import java.util.List;
 import java.util.Map;
 
+@Component
 public class World {
     private static KillStupidJavaUtilLogging killIt = new KillStupidJavaUtilLogging();
     private static Filter filter;

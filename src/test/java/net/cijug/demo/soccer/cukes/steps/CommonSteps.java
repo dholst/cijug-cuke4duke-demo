@@ -2,19 +2,17 @@ package net.cijug.demo.soccer.cukes.steps;
 
 import cuke4duke.After;
 import cuke4duke.Then;
+import cuke4duke.spring.StepDefinitions;
+import net.cijug.demo.soccer.cukes.World;
 import org.custommonkey.xmlunit.XMLAssert;
 import org.custommonkey.xmlunit.XMLUnit;
 import static org.junit.Assert.assertEquals;
-import org.xml.sax.SAXException;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import java.io.IOException;
-
+@StepDefinitions
 public class CommonSteps {
+    @Autowired
     private World world;
-
-    public CommonSteps(World world) {
-        this.world = world;
-    }
 
     @After("")
     public void tearDown(Object scenario) {
