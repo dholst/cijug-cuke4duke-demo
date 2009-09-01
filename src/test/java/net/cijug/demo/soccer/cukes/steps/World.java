@@ -1,87 +1,61 @@
 package net.cijug.demo.soccer.cukes.steps;
 
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementSetter;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
-import org.springframework.transaction.TransactionStatus;
-import org.springframework.transaction.TransactionDefinition;
-import org.springframework.transaction.support.DefaultTransactionDefinition;
+import com.sun.jersey.spi.spring.container.servlet.SpringServlet;
+import org.springframework.mock.web.*;
+import org.springframework.web.context.WebApplicationContext;
 
-import javax.sql.DataSource;
+import javax.servlet.Filter;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
 
 public class World {
-    private DataSourceTransactionManager transactionManager;
-    private TransactionStatus transactionStatus;
-    private JdbcTemplate jdbcTemplate;
-
-    public void clearTable(String table) {
-        getJdbcTemplate().execute("delete from " + table);
-    }
-
-    public JdbcTemplate getJdbcTemplate() {
-        if (jdbcTemplate == null) {
-            jdbcTemplate = new JdbcTemplate((DataSource) ApplicationContextFactory.getApplicationContext().getBean("dataSource"));
-            startTransaction();
-        }
-
-        return jdbcTemplate;
-    }
-
-    private void startTransaction() {
-        transactionManager = (DataSourceTransactionManager) ApplicationContextFactory.getApplicationContext().getBean("transactionManager");
-        DefaultTransactionDefinition def = new DefaultTransactionDefinition();
-        def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
-        def.setIsolationLevel(TransactionDefinition.ISOLATION_READ_UNCOMMITTED);
-        transactionStatus = transactionManager.getTransaction(def);
-    }
+    private static KillStupidJavaUtilLogging killIt = new KillStupidJavaUtilLogging();
+    private static Filter filter;
+    private JdbcUtil jdbc = new JdbcUtil();
+    private MockServletContext servletContext = new MockServletContext();
+    private MockHttpServletRequest request = new MockHttpServletRequest();
+    private MockHttpServletResponse response = new MockHttpServletResponse();
 
     public void destroy() {
-        if (transactionManager != null) {
-            transactionManager.commit(transactionStatus);
-        }
+        jdbc.destroy();
+    }
+
+    public void clearTable(String table) {
+        jdbc.clear(table);
     }
 
     public void populateTable(String table, List<Map<String, String>> rows) {
-        for (Map<String, String> row : rows) {
-            String sql = buildSqlStatementFrom(table, row);
-            getJdbcTemplate().update(sql, buildSqlParametersFrom(row));
-        }
+        jdbc.addRows(table, rows);
     }
 
-    private Object[] buildSqlParametersFrom(Map<String, String> row) {
-        List<Object> values = new ArrayList<Object>();
-
-        for(Map.Entry<String, String> entry : row.entrySet()){
-            values.add(entry.getValue());
-        }
-
-        return values.toArray();
+    public void get(String resource, String format) throws Exception {
+        String uri = "/context/" + resource;
+        request.addHeader("Accept", format);
+        request.setMethod("GET");
+        request.setScheme("http");
+        request.setServerName("localhost");
+        request.setContextPath("/context");
+        request.setRequestURI(uri);
+        getFilter().doFilter(request, response, new MockFilterChain());
     }
 
-    private String buildSqlStatementFrom(String table, Map<String, String> row) {
-        String separator = "";
-        StringBuffer sb = new StringBuffer("insert into ");
-        sb.append(table);
-        sb.append("(");
-
-        for(Map.Entry<String, String> entry : row.entrySet()){
-            sb.append(separator).append(entry.getKey());
-            separator = ",";
+    private Filter getFilter() throws Exception {
+        if (filter == null) {
+            filter = new SpringServlet();
+            servletContext.setAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE, ApplicationContextFactory.getApplicationContext());
+            MockFilterConfig filterConfig = new MockFilterConfig(servletContext);
+            filterConfig.addInitParameter("com.sun.jersey.config.property.packages", "net.cijug");
+            filter.init(filterConfig);
         }
 
-        sb.append(") values(");
-        separator = "";
+        return filter;
+    }
 
-        for(int i = 0; i < row.size(); i++){
-            sb.append(separator).append("?");
-            separator = ",";
-        }
+    public String getResponseStatus() {
+        return String.valueOf(response.getStatus());
+    }
 
-        sb.append(")");
-
-        return sb.toString();
+    public String getResponseContent() throws Exception {
+        return response.getContentAsString();
     }
 }

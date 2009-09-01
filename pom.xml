@@ -6,11 +6,9 @@
     <artifactId>soccer-awesomeness</artifactId>
     <version>1.0</version>
     <packaging>war</packaging>
-
     <properties>
         <databaseName>soccer-awesomeness-test</databaseName>
     </properties>
-
     <repositories>
         <repository>
             <id>java.net</id>
@@ -27,7 +25,6 @@
             <url>http://cukes.info/maven</url>
         </pluginRepository>
     </pluginRepositories>
-
     <dependencies>
         <dependency>
             <groupId>mysql</groupId>
@@ -98,6 +95,24 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
             <version>2.5.6</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.0.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jul-to-slf4j</artifactId>
+            <version>1.5.6</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>xmlunit</groupId>
+            <artifactId>xmlunit</artifactId>
+            <version>1.2</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

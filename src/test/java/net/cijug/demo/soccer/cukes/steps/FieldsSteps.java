@@ -16,6 +16,7 @@ public class FieldsSteps {
     }
 
     @When("^an api user requests a field list in \"(.*)\" format$")
-    public void anApiUserRequestsAFieldList(String format) {
+    public void anApiUserRequestsAFieldList(String format) throws Exception {
+        world.get("fields", format);
     }
 }

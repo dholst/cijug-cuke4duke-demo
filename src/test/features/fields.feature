@@ -21,3 +21,12 @@ Feature: Fields
         </field>
       </fields>
       """
+
+  Scenario: should return a list of fields in json format
+    Given the following fields are in the database
+      |id|name   |
+      |1 |field 1|
+      |2 |field 2|
+    When an api user requests a field list in "application/json" format
+    Then the user should have received a "200" status code
+    And the returned json should be [{"id":1,"name":"field 1"},{"id":2,"name":"field 2"}]
